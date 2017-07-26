@@ -1,0 +1,25 @@
+<div class="loginClass" ng-controller="loginController">
+	<div class="login col-xs-10 col-md-4">
+		<button type="button" class="close" aria-label="Close" ng-click="backHome()"><span aria-hidden="true">&times;</span></button>
+		<h3>Login</h3>
+		<form name="loginForm">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">Email address</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" ng-model="user.email" required="">
+		    <div ng-show="loginForm.email.$error.required">Required</div>
+		    <div ng-show="loginForm.email.$error.email">Please enter a valid email</div>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">Password</label>
+		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" ng-model="user.password" required="" ng-minlength="6" ng-maxlength="12">
+		    <div ng-show="loginForm.passwowrd.$error.required">required</div>
+		    <div ng-show="loginForm.password.$error.minlength">password must be of minimum 6 characters long</div>
+		    <div ng-show="loginForm.password.$error.maxlength">password should not have more than 15 characters</div>
+		  </div>
+		  <button type="submit" class="loginButton btn btn-default" ng-disabled="loginForm.$invalid" ng-click="takeOff()">Login</button>
+		  <!-- The value of loginForm.$invalid is true if the form fields are not correct, otherwise it is false -->
+		</form>
+		<div class="well newAcc"><a href="#!/signup">Create an account</a></div>
+		<!-- <div class="pull-right"><a href="#">Continue without login</a></div> -->
+	</div>
+</div>

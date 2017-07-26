@@ -1,0 +1,243 @@
+<div class="" id="restaurantPage" ng-controller="restPageController">
+		<nav class="navbar navbar-default navbar-fixed-top" id="delivery-nav">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#!/delivery">
+						<div style="font-family: 'Lemonada', cursive;">Hungry Bee</div>
+					</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+		      <ul class="nav navbar-nav">
+		        <li><a href="#!/delivery">Home</a></li>
+		        <li><a href="#">About</a></li>
+		        <li><a href="#">Blog</a></li>
+		        <li><a href="#">Franchise</a></li>
+		        <li><a href="#">Contact</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li class="spl"><a href="#!/">Logout</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+    <div class="resto-detail">
+      <div id="restro-detailContent" ng-if="restaurant.name">
+      <div class="detail-left col-md-8">
+        <div class="main-container col-md-12">
+          <div class="lgpane container-fluid row">
+            <div class="pane-head col-md-12 col-sm-12 col-xs-12" style="background-image:url({{restaurant.image}})">
+              <div class="pane-name col-md-5 col-sm-6 col-xs-9">
+                <div class="rest-category pull-right"><small>{{restaurant.category}} </small></div>
+		            <div class="rest-name"><strong>{{restaurant.name}}</strong></div>
+              </div>
+              <div class="ratings">
+        	    		<div class="points"><strong>{{restaurant.vote}}</strong></div>
+        	    		<div class="votes"><small>{{restaurant.votesNum}}</small></div>
+        	    		<div class="votes"><small>{{restaurant.reviews}}</small></div>
+        	    </div>
+            </div>
+            <div class="pane-left col-md-6 gap">
+              <div class="resto-address">
+                <div>
+                  <span class="type"><strong>Address :</strong></span>
+		               <div class="spleft"> {{restaurant.location}}</div>
+		            </div>
+		            <div class="rest-address">
+		                {{restaurant.address}}
+		            </div>
+              </div>
+              <div class="data2">
+                <div class="type">
+                        <div><small>Cuisines</small></div>
+                        <div><small>Cost for Two</small></div>
+                        <div><small>Hours</small></div>
+                    </div>
+                    <div>
+                      <div>:</div>
+                      <div>:</div>
+                      <div>:</div>
+                    </div>
+                    <div class="value">
+                        <div>&nbsp;{{restaurant.cuisines}}</div>
+                        <div>&nbsp;<i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{restaurant.cost | number}}</div>
+                        <div>&nbsp;{{restaurant.hours}}</div>
+                    </div>
+      			  </div>
+              <div class="buttonSec col-xs-12 col-sm-12 col-md-12">
+                <div><button class="btn btn-default col-xs-12 col-sm-4 col-md-4">call</button></div>
+                <div><button class="btn btn-default col-xs-12 col-sm-4 col-md-4">book a table</button></div>
+                <div><button class="btn btn-default col-xs-12 col-sm-4 col-md-4">order</button></div>
+              </div>
+              <div class="menuButton col-xs-12 col-sm-12 col-md-12">
+                <div><button class="button btn btn-danger col-xs-12 col-sm-4 col-md-12">View Menu</button></div>
+              </div>
+            </div>
+            <div class="pane-right col-md-6 gap">
+              <div ng-if="restaurant.bestDish" class="container-fluid bestdish">
+                <div class="type">
+                  <h4><span class="spleft">{{restaurant.name}}</span>'s Recommended :</h4>
+                </div>
+                <div class="value">
+                  <div class="bestDish col-sm-12 col-md-12" ng-if="restaurant.bestDish">
+                      <div class="dish-image col-sm-6 col-md-6"><img src="{{restaurant.bestDish.image}}" width="150"></div>
+                      <div class="dish-name col-sm-5 col-md-5">
+                        <div>{{restaurant.bestDish.name}}</div>
+                        <!-- <div class="button" ng-click="getIngredients(restaurant.bestDish.image)">Get Ingredients</div> -->
+                      </div>
+          		    </div>
+                </div>
+                <div class="list col-sm-12 col-md-12">
+									<div class="button pull-right" ng-click="getIngredients(restaurant.bestDish.image)">Get Ingredients</div>
+									<div ng-if="ingredients">
+								    <ol>
+											<li ng-repeat="ingredient in ingredients">
+												{{ingredient}}
+									    </li>
+								    </ol>
+								</div>
+								</div>
+              </div>
+              <div ng-hide="restaurant.bestDish" class="alter container-fluid">
+									<div><h4 class="center-modal">COMPLIMENTS</h4></div>
+									<div class="compliments">
+										<p>{{restaurant.compliment.para1}}</p>
+										<p class="center-modal">-- {{restaurant.compliment.paraHold1}}</p>
+									</div>
+                  <div class="compliments">
+										<p>{{restaurant.compliment.para2}}</p>
+										<p class="center-modal">-- {{restaurant.compliment.paraHold2}}</p>
+                  </div>
+									<div class="compliments">
+										<p>{{restaurant.compliment.para3}}</p>
+										<p class="center-modal">-- {{restaurant.compliment.paraHold3}}</p>
+                  </div>
+
+              </div>
+
+            </div>
+            <div class="pane-images col-md-12 gap">
+							<div><h3>Photos</h3></div>
+							<div class="row">
+							  <div class="col-xs-6 col-md-3">
+							    <a href="#" class="thumbnail">
+							      <img src="{{restaurant.photo1}}" alt="...">
+							    </a>
+							  </div>
+								<div class="col-xs-6 col-md-3">
+							    <a href="#" class="thumbnail">
+							      <img src="{{restaurant.photo2}}" alt="...">
+							    </a>
+							  </div>
+								<div class="col-xs-6 col-md-3">
+							    <a href="#" class="thumbnail">
+							      <img src="{{restaurant.photo3}}" alt="...">
+							    </a>
+							  </div>
+								<div class="col-xs-6 col-md-3">
+							    <a href="#" class="thumbnail">
+							      <img src="{{restaurant.photo4}}" alt="...">
+							    </a>
+							  </div>
+							</div>
+            </div>
+            <div class="pane-reviews col-md-12 gap">
+              <div class="reviewpane-head col-md-12">
+                <div><h3>Reviews</h3>
+                  <div class="ratings">
+                     <div class="points"><strong>{{restaurant.vote}}/5</strong></div>
+                   </div>
+                </div>
+              </div>
+              <div ng-if="restaurant.comment1" class="reviews-main col-md-12">
+                <div class="review-head col-md-12">
+                  <div class="review-img col-md-3"><img src="{{restaurant.comment1.reviewImg}}" class="img-thumbnail"></div>
+                  <div class="review-name col-md-4"><div><h4>{{restaurant.comment1.reviewName}}</h4></div><div>{{restaurant.comment1.reviewTime}}</div></div>
+                  <div class="review-stars"></div>
+                </div>
+                <div class="review-body col-md-12">
+                  <p>{{restaurant.comment1.reviewPara}}</p>
+                </div>
+              </div>
+              <!-- comment2 -->
+							<div ng-if="restaurant.comment2" class="reviews-main col-md-12">
+                <div class="review-head col-md-12">
+                  <div class="review-img col-md-3"><img src="{{restaurant.comment2.reviewImg}}" class="img-thumbnail"></div>
+                  <div class="review-name col-md-4"><div><h4>{{restaurant.comment2.reviewName}}</h4></div><div>{{restaurant.comment2.reviewTime}}</div></div>
+                  <div class="review-stars"></div>
+                </div>
+                <div class="review-body col-md-12">
+                  <p>{{restaurant.comment2.reviewPara}}</p>
+                </div>
+              </div>
+							<!-- comment3 -->
+							<div ng-if="restaurant.comment3" class="reviews-main col-md-12">
+                <div class="review-head col-md-12">
+                  <div class="review-img col-md-3"><img src="{{restaurant.comment3.reviewImg}}" class="img-thumbnail"></div>
+                  <div class="review-name col-md-4"><div><h4>{{restaurant.comment3.reviewName}}</h4></div><div>{{restaurant.comment3.reviewTime}}</div></div>
+                  <div class="review-stars"></div>
+                </div>
+                <div class="review-body col-md-12">
+                  <p>{{restaurant.comment3.reviewPara}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-right col-md-4">
+				<div class="resto-list">
+					<div class="list-group">
+						<li class="list-group-item" style="background-color:#cb202d;color:white"><h5>Recommended Restaurants</h5></li>
+					  <a href="#!/restaurant/1" class="list-group-item">American Grill and Bar<div class="ratings"><div class="points">4.9</div></div></a>
+					  <a href="#!/restaurant/2" class="list-group-item">Paradise<div class="ratings"><div class="points">4.6</div></div></a>
+					  <a href="#!/restaurant/3" class="list-group-item">Tatva<div class="ratings"><div class="points">4.4</div></div></a>
+					  <a href="#!/restaurant/4" class="list-group-item">Autumn Leaf Cafe<div class="ratings"><div class="points">4.2</div></div></a>
+					  <a href="#!/restaurant/5" class="list-group-item">Ciclo Cafe<div class="ratings"><div class="points">4.0</div></div></a>
+						<a href="#!/restaurant/6" class="list-group-item">Vera Pizzeria<div class="ratings"><div class="points">4.0</div></div></a>
+					</div>
+				</div>
+				<div class="resto-right-2">
+					WORK IN PROGRESS
+				</div>
+				<div class="resto-right-3">
+					WORK IN PROGRESS
+				</div>
+				<div class="appD">
+					<div class="col-md-offset-2 col-md-8 btn-danger"><h4>Download app</h4></div>
+					<div><img class="point" src="/content/appD.png" width="60%"></div>
+					<div><img class="point" src="http://www.formbay.com.au/images/appdownload.png" width="100%"></div>
+				</div>
+      </div>
+    </div>
+		<div class="resto-alter" ng-hide="restaurant.name">
+			<div class="notFound"><img src="https://s-media-cache-ak0.pinimg.com/236x/67/af/cc/67afcc05a8c6ea6533777e8bae54d133--low-calorie-food-diet-foods.jpg"><h3>404 - Not Found</h3></div>
+		</div>
+	</div>
+	<div class="footer col-md-12">
+	<div class="row">
+		<div class="foot-list col-md-4">
+			<ul>
+				<li><a href="#">Home</a></li>
+		        <li><a href="#">About</a></li>
+		        <li><a href="#">Blog</a></li>
+		        <li><a href="#">Franchise</a></li>
+		        <li><a href="#">Contact</a></li>
+			</ul>
+		</div>
+		<div class="socio foot-list col-md-2 pull-right">
+			<li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+		    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+	        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	    </div>
+	</div>
+</div>
+</div>
