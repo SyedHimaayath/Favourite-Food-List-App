@@ -11,7 +11,7 @@ body{
 #main-head{
 	min-height:80vh;
 	background-color: #cb202d;
-	background-image: url('https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/fav.jpg');
+	background-image: url('/content/fav.jpg');
 	/*background-image: url('https://ksr-ugc.imgix.net/assets/014/025/729/9c31a66dd476f2e2ef8b501c660b30fb_original.jpg?w=1552&h=873&fit=fill&bg=000000&v=1475989516&auto=format&q=92&s=6b9b148d180d58019d5c80cabd44eae8');*/
 	background-position: top;
 	background-size: cover;
