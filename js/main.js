@@ -264,16 +264,49 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 });
 hungrybee.controller('loginController',function($scope,$location){
 $scope.takeOff = function(){
-	$location.url('delivery')
+	var loginName = $('.loginName').val();
+	var loginPassword = $('.loginPassword').val();
+	if(((localStorage.newUserName === loginName) && (localStorage.newUserPassword === loginPassword)) ||(loginName === 'test@acadview.com')&&( loginPassword === 'supersecret') ){
+		$('#errorReport').text('');
+		$location.url('delivery')
+	}
+	else{
+		alert('Username or password is incorrect')
+		$('#errorReport').text('if you have registered please use the latest id and password else use ID: test@acadview.com Password: supersecret')
+	}
 }
 $scope.backHome= function(){
 	$location.url('/')
+}
+$scope.forgot = function(){
+	if(localStorage.newUserName === '' ||localStorage.newUserPassword === ''){
+		$('#errorReport').text('if you have registered please use the latest id and password else use ID: test@acadview.com Password: supersecret')
+	}
+	else{
+	alert('your id is '+localStorage.newUserName+' and Password is '+localStorage.newUserPassword)
+}
 }
 });
 hungrybee.controller('signupController',function($scope,$location){
 $scope.backHome= function(){
 	$location.url('/')
 }
+$scope.register = function(){
+	var userName = $('#inputEmail3').val();
+	var userPassword = $('#inputPassword3').val();
+	if(localStorage.newUserName === userName){
+		$('#testCase').text('Email ID is already registered. Please try with a new ID.')
+		console.log('existing')
+	}
+	else{
+		localStorage.setItem('newUserName',userName);
+		localStorage.setItem('newUserPassword',userPassword);
+		console.log(userName);
+		console.log(userPassword);
+		$location.url('delivery')
+	}
+}
+
 });
 hungrybee.controller('homeController',function($scope,$location){
 	$(window).on('scroll',function(){

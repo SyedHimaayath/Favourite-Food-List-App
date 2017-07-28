@@ -291,6 +291,12 @@ input.ng-valid.ng-touched{
 	text-decoration: none;
 	color: black;
 }
+.forgotPass{
+	text-align: center;
+}
+.forgotPass a{
+	cursor: pointer;
+}
 /*sign up form*/
 .signupClass{
 	width:100%;
