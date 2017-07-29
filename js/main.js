@@ -1,7 +1,9 @@
+// sbse pehla kaam app ko properly initialize krna
 var hungrybee = angular.module('hungrybeeApp',['ngRoute']);
 //Route dena start kia
 hungrybee.config(function ($routeProvider) {
 	$routeProvider
+	//default route home p lejayega
 	.when('/',{
 		templateUrl: 'pages/home.html',
 		controller: 'homeController'
@@ -18,6 +20,7 @@ hungrybee.config(function ($routeProvider) {
 		templateUrl:'pages/signup.html',
 		controller:'signupController'
 	})
+	// jis restaurant pe click karenge us k info page p land krenge depending on the id
 	.when('/restaurant/:id',{
 		templateUrl:'pages/restaurant.html',
 		controller:'restPageController'
@@ -26,43 +29,47 @@ hungrybee.config(function ($routeProvider) {
 hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 	$scope.ingredients = [];
 	$scope.getIngredients = function(url) {
-	var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
+	var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}' //passing 3 strings very intelligetnly :)
+	//clarifai ka define kiya hua format ^
+	//$.ajax ki jaga $http use kia... $http angualr ka argument h
 	$http({
+		// type is replaced with method
 		'method': 'POST',
 		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
 		'headers': {
 			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
 			'Content-Type': 'application/json'
 		},
-		'data': data
+		'data': data //yahaan se chaining concept use hua h.. first function success k liye aur second failure k liye
 	}).then(function (response) {
-			var ingredients = response.data.outputs[0].data.concepts;
+			var ingredients = response.data.outputs[0].data.concepts;//object(response) k andar k object(data) k andar k object(outputs) k andar k araay-ka-first-index([0]) k andar k object(data) kandar k object(concepts) ko access kiya h
   			var list = '';
   			for (var i =0;i<ingredients.length;i++)
 				{
 					console.log(response.data.outputs[0].data.concepts[i].name);
-					$scope.ingredients.push(ingredients[i].name);
+					//object(response) k andar k object(data) k andar k object(outputs) k andar k araay-ka-first-index([0]) k andar k object(data) kandar k object(concepts) ke ek ek index  k object(name) ko liya
+					$scope.ingredients.push(ingredients[i].name); //aur usko isme push kiya one-by-one
   			}
-    		// $('.ingredients').html(list);
-    		// console.log(list);
         }, function (xhr) {
         	console.log(xhr);
         })
 	}
+	//ek ek resturant ki details ek object m..
 	$scope.restaurantId = $routeParams.id;
 	var restaurants = [{
+		// restaurant 01
 		name: 'American Grill & Bar',
 		address: 'Flat 48, Ground Floor, Opposite Vengal Rao Park, Road 1, Banjara Hills, Hyderabad',
 		location: 'Banjara Hills',
 		category: 'Casual Dining, Bar',
 		vote: '4.9',
-		id:1,
 		cuisines: 'Mexican,American',
 		cost: '2200',
 		hours: '12 Noon to 11 AM (Mon-Sun)',
 		votesNum:'2625 votes',
 		reviews:'2253 reviews',
 		image:'https://b.zmtcdn.com/data/pictures/chains/7/90847/2cc208fed5aacb60c5165cfca98ec0b6_featured_v2.jpg',
+		// isi image kko fit krke delivery pagee m use kiya h just by changing the url ^
 		bestDish: {
 			name: 'Fajitas',
 			image: 'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
@@ -90,6 +97,7 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 			reviewPara:'Ordered food from swiggy, which was a combo of paneer tikka and vegetable biryani... quality was very good... loved the taste... paneer was very soft and very tasty ... delicious combo for vegetarians ☺️'
 		}
 	},{
+		// restaurant 02
 		name: 'Paradise',
 		address: ' Plot 22-23, Vinayaknagar, Gachibowli Main Road, Gachibowli, Hyderabad',
 		location: 'Gachibowli',
@@ -126,12 +134,12 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 			reviewPara:'Ordered food from swiggy, which was a combo of paneer tikka and vegetable biryani... quality was very good... loved the taste... paneer was very soft and very tasty ... delicious combo for vegetarians ☺️'
 		}
 	},{
+		// restaurant 03
 		name: 'Tatva',
 		address: '1st Floor,SL Jubilee, Road 36, Jubilee Hills, Hyderabad',
 		location: 'Jubilee Hills',
 		category: 'Casual Dining',
 		vote: '4.4',
-		id:3,
 		cuisines: 'Continental,Italian',
 		cost: '1200',
 		hours: '12 Noon to 3:30 PM (Mon-Sun)',
@@ -157,12 +165,12 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 			reviewPara:'Dinner tonight. Ordered for iced teas, chicken n bacon quesadillas, veg and cheese quesadillas. Excellent food and drinks, and very good service by Rockstar Ramesh. He gave us a choco chip paradise pie complimentary as they were out of Molten chocolava cake, and it was my sons birth day.'
 		}
 	},{
+		// restaurant 04
 		name: 'Autumn Leaf Cafe',
 		address: 'Plot 823, Road 41, Jubilee Hills, Hyderabad',
 		location: 'Jubilee Hills',
 		category: 'Café',
 		vote: '4.2',
-		id:4,
 		cuisines: 'Cafe',
 		cost: '1000',
 		hours: '12 Noon to 10:30 PM (Mon-Sun)',
@@ -190,12 +198,12 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 			reviewPara:'Ordered food from swiggy, which was a combo of paneer tikka and vegetable biryani... quality was very good... loved the taste... paneer was very soft and very tasty ... delicious combo for vegetarians ☺️'
 		}
 	},{
+		// restaurant 05
 		name: 'Ciclo Cafe',
 		address: '801, Road 36, Jubilee Hills, Hyderabad',
 		location: 'Jubilee Hills',
 		category: 'Café',
 		vote: '4.0',
-		id:5,
 		cuisines: 'Cafe,Continental',
 		cost: '1300',
 		hours: '11 AM to 11:30 PM (Mon-Fri), 7:30 AM to 11:30 PM (Sat-Sun)',
@@ -229,12 +237,12 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 			reviewPara:'Ordered food from swiggy, which was a combo of paneer tikka and vegetable biryani... quality was very good... loved the taste... paneer was very soft and very tasty ... delicious combo for vegetarians ☺️'
 		}
 	},{
+		// restaurant 06
 		name: 'Vera Pizzeria',
 		address: ' 41, Silicon Valley, Image Garden Road, Madhapur, Hyderabad',
 		location: 'Madhapur',
 		category: 'Casual Dining',
 		vote: '4.0',
-		id:6,
 		cuisines: 'Pizza,Italian',
 		cost: '1000',
 		hours: '11 AM to 11 PM (Mon-Sun)',
@@ -261,28 +269,33 @@ hungrybee.controller('restPageController',function($scope,$routeParams,$http){
 		}
 	}]
 	$scope.restaurant = restaurants[$routeParams.id - 1];
+	// restaurant k id k according uska object use krna
 });
 hungrybee.controller('loginController',function($scope,$location){
 $scope.takeOff = function(){
+	// kind of validation
 	var loginName = $('.loginName').val();
 	var loginPassword = $('.loginPassword').val();
+	// agar local storage me username aur password saved h tho uss se bhi login kr skte h ya phir jo fixed id aur pass word h wo use kr skte h
 	if(((localStorage.newUserName === loginName) && (localStorage.newUserPassword === loginPassword)) ||(loginName === 'test@acadview.com')&&( loginPassword === 'supersecret') ){
 		$('#errorReport').text('');
-		$location.url('delivery')
+		$location.url('delivery') // successfully login ho gya tho next page p le jao
 	}
 	else{
-		alert('Username or password is incorrect')
+		alert('Username or password is incorrect') //clue
 		$('#errorReport').text('if you have registered please use the latest id and password else use ID: test@acadview.com Password: supersecret')
 	}
 }
 $scope.backHome= function(){
-	$location.url('/')
+	$location.url('/') //close button k liye
 }
 $scope.forgot = function(){
+	// agar local storage me username aur password save nhi hue h tb ye karo
 	if(localStorage.newUserName === '' ||localStorage.newUserPassword === ''){
 		$('#errorReport').text('if you have registered please use the latest id and password else use ID: test@acadview.com Password: supersecret')
 	}
 	else{
+		// save hogye h tho user ko wo values show karo
 	alert('your id is '+localStorage.newUserName+' and Password is '+localStorage.newUserPassword)
 }
 }
@@ -292,30 +305,32 @@ $scope.backHome= function(){
 	$location.url('/')
 }
 $scope.register = function(){
-	var userName = $('#inputEmail3').val();
-	var userPassword = $('#inputPassword3').val();
+	var userName = $('#inputEmail3').val(); //userId ko store krliye userName variable m
+	var userPassword = $('#inputPassword3').val(); //userPassword store krliya useerPassword variable m
 	if(localStorage.newUserName === userName){
+		// agar user id local storage m stored h tho ye message show karo
 		$('#testCase').text('Email ID is already registered. Please try with a new ID.')
 		console.log('existing')
 	}
 	else{
-		localStorage.setItem('newUserName',userName);
-		localStorage.setItem('newUserPassword',userPassword);
-		console.log(userName);
-		console.log(userPassword);
-		$location.url('delivery')
+		localStorage.setItem('newUserName',userName); //agar jo id dala h wo pehle se store nhi kiya h tho usko store karlo
+		localStorage.setItem('newUserPassword',userPassword); //same jo id k saath kiya
+		// console.log(userName);
+		// console.log(userPassword);
+		$location.url('delivery')// aur next page p lejao
 	}
 }
 
 });
 hungrybee.controller('homeController',function($scope,$location){
 	$(window).on('scroll',function(){
-
+		// halka sa animation dia 2 images ko
 		var wScroll = $(this).scrollTop()
 		var w1 = document.querySelector('.sushi');
 		var w2 = document.querySelector('.cocktail');
-		w1.style.left=wScroll*0.1+'px';
-		w2.style.left=180-wScroll*0.1+'px';
+		w1.style.left=wScroll*0.1+'px';//jo position relative kia h css m uska left 0 pe h.. usko alter karenge..
+		w2.style.left=180-wScroll*0.1+'px';// same yahaan bhi but ye halka  sa late se hoga kyunki ye neeche h.. tho visibility m aane k liye time lgta h
+		//warna poora chala jayega side m aur user ko dikhegabhi nhi
 	});
 	$scope.loginland = function(){
 		$location.url('login');
@@ -327,13 +342,15 @@ hungrybee.controller('homeController',function($scope,$location){
 
 
 hungrybee.controller('mainController',function($scope){
+	//ye delivery page ka controller h
+	//alag hotels for alag details
 	$scope.restaurants=[{
 		name: 'American Grill & Bar',
 		address: 'Flat 48, Ground Floor, Opposite Vengal Rao Park, Road 1, Banjara Hills, Hyderabad',
 		location: 'Banjara Hills',
 		category: 'Casual Dining, Bar',
 		vote: '4.9',
-		id:1,
+		id:1,//isi ko use krke respective restaurant ki info page p land krte h
 		cuisines: 'Mexican,American',
 		cost: '2200',
 		hours: '12 Noon to 11 AM (Mon-Sun)',

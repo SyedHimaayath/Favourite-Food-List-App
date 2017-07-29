@@ -33,9 +33,13 @@
       <div id="restro-detailContent" ng-if="restaurant.name">
       <div class="detail-left col-md-8">
         <div class="main-container col-md-12">
+					<!-- according to id hota h sbkuch select -->
           <div class="lgpane container-fluid row">
             <div class="pane-head col-md-12 col-sm-12 col-xs-12" style="background-image:url({{restaurant.image}})">
+							<!-- har restaurant ki alag background image h -->
+							<!-- same object wala funda use kiya hua h values fetch krne k liye -->
               <div class="pane-name col-md-5 col-sm-6 col-xs-9">
+								<!-- transform use kiya h.. (skew) -->
                 <div class="rest-category pull-right"><small>{{restaurant.category}} </small></div>
 		            <div class="rest-name"><strong>{{restaurant.name}}</strong></div>
               </div>
@@ -97,6 +101,7 @@
                 </div>
                 <div class="list col-sm-12 col-md-12">
 									<div class="button pull-right" ng-click="getIngredients(restaurant.bestDish.image)">Get Ingredients</div>
+									<!-- api use krke saare ingredients ki list show krta h -->
 									<div ng-if="ingredients">
 								    <ol>
 											<li ng-repeat="ingredient in ingredients">
@@ -106,7 +111,10 @@
 								</div>
 								</div>
               </div>
+							<!-- agar reestaurant ki koi special ya best dish nhi h tb y pane show hota h... -->
               <div ng-hide="restaurant.bestDish" class="alter container-fluid">
+								<!-- ng-hide is div ko hide krdeta h agar restaurat ki best deish hoti h -->
+								<!-- similar objects ki functionality use hui h -->
 									<div><h4 class="center-modal">COMPLIMENTS</h4></div>
 									<div class="compliments">
 										<p>{{restaurant.compliment.para1}}</p>
@@ -128,22 +136,22 @@
 							<div><h3>Photos</h3></div>
 							<div class="row">
 							  <div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail">
+							    <a href="" class="thumbnail">
 							      <img src="{{restaurant.photo1}}" alt="...">
 							    </a>
 							  </div>
 								<div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail">
+							    <a href="" class="thumbnail">
 							      <img src="{{restaurant.photo2}}" alt="...">
 							    </a>
 							  </div>
 								<div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail">
+							    <a href="" class="thumbnail">
 							      <img src="{{restaurant.photo3}}" alt="...">
 							    </a>
 							  </div>
 								<div class="col-xs-6 col-md-3">
-							    <a href="#" class="thumbnail">
+							    <a href="" class="thumbnail">
 							      <img src="{{restaurant.photo4}}" alt="...">
 							    </a>
 							  </div>
@@ -157,6 +165,7 @@
                    </div>
                 </div>
               </div>
+							<!-- maximum 3 comments h.. unmese jo js file m defined h wo show hoga alag alag page p -->
               <div ng-if="restaurant.comment1" class="reviews-main col-md-12">
                 <div class="review-head col-md-12">
                   <div class="review-img col-md-3"><img src="{{restaurant.comment1.reviewImg}}" class="img-thumbnail"></div>
@@ -194,6 +203,7 @@
         </div>
       </div>
       <div class="detail-right col-md-4">
+				<!-- to fill space -->
 				<div class="resto-list">
 					<div class="list-group">
 						<li class="list-group-item" style="background-color:#cb202d;color:white"><h5>Recommended Restaurants</h5></li>
@@ -211,6 +221,7 @@
 				<div class="resto-right-3">
 					WORK IN PROGRESS
 				</div>
+				<!-- app -->
 				<div class="appD">
 					<div class="col-md-offset-2 col-md-8 btn-danger"><h4>Download app</h4></div>
 					<div><img class="point" src="https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/appD.PNG" width="60%"></div>
@@ -218,6 +229,7 @@
 				</div>
       </div>
     </div>
+		<!-- agar user indefinte url open krta h tho us 404 not found wali pag dikhegi -->
 		<div class="resto-alter" ng-hide="restaurant.name">
 			<div class="notFound">
 				<img src="https://s-media-cache-ak0.pinimg.com/236x/67/af/cc/67afcc05a8c6ea6533777e8bae54d133--low-calorie-food-diet-foods.jpg">
@@ -225,6 +237,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- simple footer -->
 	<div class="footer col-md-12">
 	<div class="row">
 		<div class="foot-list col-md-4">

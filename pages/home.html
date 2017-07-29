@@ -11,7 +11,7 @@
 		        <span class="icon-bar"></span>
 		      </button>
 		      <a class="navbar-brand" href="#"><img src="https://cms-assets.tutsplus.com/uploads/users/127/posts/26416/image/2_2.png" width="100px">
-						<div style="color:white;text-align:center;font-family: 'Lemonada', cursive;">Hungry Bee</div>
+						<div class="brand-name" >Hungry Bee</div>
 					</a>
 		    </div>
 
@@ -33,11 +33,13 @@
 		</nav>
 		<div class="" id="searchDiv">
 			<h1>All your favourite</br>cuisines in one place</h1>
+			<!-- MODAL initiates here on click-->
 			<div data-toggle="modal" data-target="#myModal">
 			<input class="searchBar" type="text" placeholder="search...">
 			<span class="searchButton">
 				<a><i class="fa fa-search" aria-hidden="true"></i></a>
 			</span></div>
+			<!-- MODAL starts -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -50,11 +52,14 @@
 			      </div>
 			      <div class="modal-body" align="center">
 			        <button type="button" class="btn btn-primary loadButton" data-loading-text="Loading..." data-dismiss="modal" ng-click="signupland()">Signup</button>
+							<!-- signupland() takes the user to sign up page -->
 			        <button type="button" class="btn btn-primary loadButton" data-loading-text="Loading..." data-dismiss="modal" ng-click="loginland()">Login</button>
-			      </div>
+							<!-- loginland() takes the user to sign up page -->
+						</div>
 			    </div>
 			  </div>
 			</div>
+			<!-- MODAL ends -->
 		</div>
 	</div>
 	<div class="" id="second-main">
@@ -71,6 +76,7 @@
 			</div>
 			<div class="col-md-3">
 				<img class="imgs sushi" src="https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/6a.png">
+				<!-- isi image pe tweenMax use kiya h -->
 				<!-- <img class="imgs cocktail" src="content/3a.png"> -->
 				<!-- <img class="imgs burger" src="content/1a.png"> -->
 			</div>
@@ -78,11 +84,13 @@
 		<div class="col-md-offset-1 col-md-10"><hr></div>
 		<div class="hole-contain">
 			<div class="second-head"><h1>Find the Best food around you</h1></div>
+			<!-- to create some parallax effect -->
 		</div>
 		<div class="col-md-offset-1 col-md-10"><hr></div>
 		<div>
 			<div class="col-md-3">
 				<img class="imgs cocktail" src="https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/3a.png">
+				<!-- tweeMax wali image -->
 			</div>
 			<div class="col-md-offset-1 col-md-7 advert">
 				<h1>The saviour !!</h1>
@@ -110,6 +118,7 @@
 	</div>
 	<!-- <div class="fourth-main"> -->
 	<div class=" tocenter">
+		<!-- app box -->
 		<div class="col-md-12"><h2>Download our New App</h2></div>
 		<div class="col-md-offset-2 col-md-4 app-left">
 			<img class="phone1" src="https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/phone.png">
@@ -126,6 +135,7 @@
 			</ul>
 		</div>
 	</div>
+	<!-- footer starts -->
   <div class="footer col-md-12">
 	<div class="row">
 		<div class="foot-list col-md-4">

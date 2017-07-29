@@ -32,6 +32,7 @@
 		</nav></div>
 		<div id="searchDiv">
 			<h1 >All your favourite</br>cuisines in one place</h1>
+			<!-- background fixed nhi h -->
 		</div>
 	</div>
 	<div class="restaurantContents col-md-12">
@@ -43,6 +44,7 @@
 				<form>
 					<div class="input-wrapper">
 						<input type="text" class="form-control" placeholder="Search..." ng-model="query">
+						<!-- ng-model="query" -> yhi help krta h search wali feel lane m -->
 					</div>
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
@@ -50,15 +52,21 @@
 			<div ng-repeat="restaurant in restaurants | filter:query" class="col-md-12 restaurants" ng-controller="mainController">
 			<div class="topContainer col-xs-12 col-sm-12 col-md-12 ">
 			    <div class="images col-xs-3 col-sm-3 col-md-3">
+						<!-- jis pi restaurant k naam p click karenge us k id k accordingly next page p land karega -->
+						<!-- yahaan se sara information js ki file me store kiya hua h jo mainController ki help se page p show karega -->
 			    	<a ng-href="#!/restaurant/{{restaurant.id}}"><img ng-src="{{restaurant.image}}"></a>
 			    </div>
 			    <div class="data1 col-xs-12  col-sm-7 col-md-9">
 			    	<div class="rest-info">
 			    		<div class="rest-category">
+								<!-- ek object banaya hua h uske andar k values ko fetch krke paste krna h -->
 		               <small>{{restaurant.category}} </small>
 		            </div>
 		            <div class="rest-name">
 		            <a  ng-href="#!/restaurant/{{restaurant.id}}"><strong>{{restaurant.name}}</strong></a>
+								<!-- ng-href nhi use krte h tho page chal tho jata h lekin console me error sho karega-->
+								<!-- B'coz angular ko load hone m time lgta h aur itne me jo HTML m href use hua h use wo object nhi milta h -->
+								<!-- kitna kuch jaan gya m ;D -->
 		            </div>
 		            <div>
 		               <strong> {{restaurant.location}}</strong>
@@ -92,6 +100,7 @@
 		        </div>
 			</div>
 			<div class="data3 row">
+				<!-- inko link krna h -->
 				<ul class="interactList col-md-12">
 					<li><a href="">call</a></li>
 					<li><a href="">book a table</a></li>
@@ -101,6 +110,7 @@
 			</div>
 	    	</div>
 		</div>
+		<!-- ye banana bakhi h -->
 		<div class="rest-cuisines col-md-3">
 
 		</div>

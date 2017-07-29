@@ -10,10 +10,10 @@ body{
 }
 #main-head{
 	min-height:80vh;
+	/*screen ko total height ki 80% rkhne k liye*/
 	background-color: #cb202d;
-	/*background-image: url('/content/fav.jpg');*/
 	background-image: url('https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/fav.jpg');
-	/*background-image: url('https://ksr-ugc.imgix.net/assets/014/025/729/9c31a66dd476f2e2ef8b501c660b30fb_original.jpg?w=1552&h=873&fit=fill&bg=000000&v=1475989516&auto=format&q=92&s=6b9b148d180d58019d5c80cabd44eae8');*/
+	/*since images are placed in different folders, accessing this way was easy and helpful*/
 	background-position: top;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -36,6 +36,12 @@ body{
 #restaurantPage .navbar-brand{
 	padding:15px;
 	color: white;
+}
+.brand-name{
+	color:white;
+	text-align:center;
+	font-family: 'Lemonada', cursive;
+	/*google-font^*/
 }
 .nav.navbar-nav li:hover{
 	border-bottom: 1px white solid;
@@ -65,9 +71,11 @@ body{
 	font-size: 55px;
 	color: white;
 	font-family: 'Kaushan Script', cursive;
+	/*google-font ^*/
 }
 .searchBar{
 	width:90%;
+	/*responsive banane k liye*/
 	background-color: transparent;
 	border:0px;
 	border-bottom:2px solid white;
@@ -106,6 +114,7 @@ body{
 }
 #second-main .second-head h1{
 	font-family: 'Kaushan Script', cursive;
+	/*google-font ^*/
 	font-size: 45px;
 	color:white;
 	margin: 0px auto;
@@ -115,12 +124,12 @@ body{
 	margin:0px auto;
 	width:80%;
 	height:200px;
-	/*background-image: url('https://s3.amazonaws.com/cms.festfoods.com/files/callout/2017-06/july-insider.jpg');*/
 	background-image: url('https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/fav2.jpg');
 	background-position: bottom center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	/*parallax effect show karne k liye background attachment fix krdia aur ek us div k andar text daldiya*/
 	overflow: hidden;
 	border-radius: 100px;
 	/*display: block;*/
@@ -148,19 +157,20 @@ body{
 	position: relative;
 	top:0px;
 	left:0px;
+	/*isme tweenMax us krke use scroll movement ko bind krdia*/
+	/*position relative rakhna necessary h to alter the rest positions */
 }
 .cocktail{
 	position: relative;
 	top:-60px;
 	left:120px;
 	transform: rotate(-90deg);
+	/*photo ko adjust krne k liye rotate krna pada*/
+	/*isme tweenMax us krke use scroll movement ko bind krdia*/
+	/*position relative rakhna necessary h to alter the rest positions */
 }
-/*.burger{
-	position:absolute;
-	top:-120px;
-	left:320px;
-}
-*/
+/*ise tween max lagake scroll bind krke poora time rotate kr skta tha..*/
+/*cartoon hojayega ese tho*/
 .quote-box{
 	padding:20px 30px;
 	background-color:rgba(255,139,0,0.1);
@@ -190,13 +200,16 @@ body{
 	height:400px;
 	z-index: 10;
 	border-radius:25px;
+	/*first image ko upar rkha h using z-index 10*/
 }
 .phone2{
 	width:200px;
 	height:400px;
 	border:1px solid black;
 	border-radius:25px;
+	/*ab ye automatically neeche hoga kyun ki iska z-index 10 se km hota h (default)*/
 }
+/*ye tho necessity k hisab se define krliya to bring elements to center*/
 .tocenter{
 	margin:0px auto;
 	text-align: center;
@@ -252,8 +265,9 @@ li{
 .loginClass{
 	width:100%;
 	height:100vh;
+	/*height 100% rkhne k liye*/
 	background-color: #cb202d;
-	display: flex;
+	display: flex; /* very useful property*/
 	flex-direction: column;
 	justify-content: center;
 	align-content: center;
@@ -275,10 +289,12 @@ li{
 	background-color: white;
 	border-radius: 10px;
 }
+/*angular k default errors ko styling kri*/
 input.ng-invalid.ng-touched{
 	border:1px solid red;
 	background-color: rgba(255,0,0,0.3);
 }
+/*same here*/
 input.ng-valid.ng-touched{
 	border:1px solid green;
 }
@@ -338,22 +354,14 @@ input.ng-valid.ng-touched{
 	width:45px;
 }
 /*Delivery page styling*/
-#delivery{
-	/*background-image: url(/content/5a.png);
-	background-position:right;
-	background-size: contain;
-	background-attachment: fixed;
-	background-repeat: no-repeat;*/
-}
 #delivery-head{
 	min-height:50vh;
 	background-color: #cb202d;
 	background-image: url('https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/fav.jpg');
-	/*background-image: url('https://ksr-ugc.imgix.net/assets/014/025/729/9c31a66dd476f2e2ef8b501c660b30fb_original.jpg?w=1552&h=873&fit=fill&bg=000000&v=1475989516&auto=format&q=92&s=6b9b148d180d58019d5c80cabd44eae8');*/
+	/*image seedhe site se hi access krna better lga*/
 	background-position: top;
 	background-size: cover;
 	background-repeat: no-repeat;
-	/*background-attachment: fixed;*/
 	overflow: hidden;
 }
 #delivery-nav{
@@ -369,15 +377,12 @@ input.ng-valid.ng-touched{
 	height:auto;
 	background-color:rgba(0,0,0,0.1);
 	padding-top:20px;
+	/*ye bhi halka sa parallax k liye hi h*/
 	background-image: url('https://raw.githubusercontent.com/SyedHimaayath/Online-Food-order-Favorite-Food-List-App/master/content/5a.png');
 	background-position:right;
 	background-size: contain;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	/*display:flex;
-	flex-direction: row;
-	justify-content: center;
-	align-content: center;*/
 }
 #delivery-head #searchDiv{
 	margin:0px auto;
@@ -391,15 +396,7 @@ input.ng-valid.ng-touched{
 	height:300px;
 	background-color: white;
 }
-.listContainer{
-	/*background-color: green;*/
-	/*margin:0px auto;*/
-	/*margin-top: 20px;*/
-}
 .topContainer{
-	/*background-color: blue;*/
-	/*height:100px;*/
-	/*display: inline-flex;*/
 	padding:20px;
 	padding-left:10px;
 	padding-bottom: 0px;
@@ -426,6 +423,7 @@ input.ng-valid.ng-touched{
 }
 .images img{
 	width:96%;
+	/*adjustable width k liye*/
 }
 .search-bar {
     margin-left: auto;
@@ -454,6 +452,7 @@ input.ng-valid.ng-touched{
 .rest-info .rest-category {
     color: #89959B;
     text-transform: uppercase;
+		/*useful*/
 }
 
 .rest-info .rest-address {
@@ -521,6 +520,8 @@ input.ng-valid.ng-touched{
 #restaurantPage{
 	background-color: rgba(0,0,0,0.1);
 }
+/*user-defined to give a margin-bottom of 15 px any where needed*/
+/*doing it like bootsrap;)*/
 .gap{
 	margin-bottom:15px;
 }
@@ -544,6 +545,7 @@ input.ng-valid.ng-touched{
 	overflow: hidden;
 	padding:10px;
 }
+/*mai pane*/
 .lgpane{
 	padding:20px;
 	/*border: 1px solid #e7e7e7;*/
@@ -562,18 +564,21 @@ input.ng-valid.ng-touched{
 	position:absolute;
 	top:80px;
 	margin-left:-30px;
-	transform: skewX(-25deg);
+	transform: skewX(-25deg);/*shape alter krne k liye (looking nyc ab)*/
+	/*ye right side ko bend krta h*/
 	padding:10px;
 	padding-left:30px;
 	/*border:1px solid white;*/
 }
 .pane-name .rest-category{
 	transform: skewX(25deg);
+	/*jb pane-name right ko bend hota h, tb uske saare contents bhi right-side italic jese bn jaate h.. to aboid that, uska revese lga diya*/
 	color:white;
 	/*margin-left:15px;*/
 }
 .pane-name .rest-name{
 	transform: skewX(25deg);
+	/*same jo rest-categoryk saath kiya*/
 	font-size: 35px;
 	margin-top:8px;
 	margin-left:10px;
@@ -581,10 +586,6 @@ input.ng-valid.ng-touched{
 }
 .pane-head .ratings .votes{
 	color: white;
-}
-.data2 .hold{
-	/*display: inline-flex;*/
-	/*margin:0px auto;*/
 }
 .pane-left .data2{
 	border-top:1px solid #e7e7e7;
@@ -594,13 +595,14 @@ input.ng-valid.ng-touched{
 	padding-bottom:0px;
 	margin-bottom:0px;
 }
+/*location ko highlight krne k liye changig the color*/
 .spleft{
 	color: #cb202d;
 }
 .pane-left{
 	background-color: white;
 	border: 1px solid #e7e7e7;
-	min-height:400px;
+	min-height:400px; /*right pane k saath equal dikhne k liye*/
 	overflow:hidden;
 }
 .pane-images{
@@ -618,7 +620,7 @@ input.ng-valid.ng-touched{
 	margin-bottom: 10px;
 }
 .pane-right{
-	min-height:400px;
+	min-height:400px; /*left pane k saath equal dikhne k liye.. uske aage jitni marzi bad skta h*/
 	background-color: white;
 	border: 1px solid #e7e7e7;
 	padding:10px;
@@ -720,6 +722,7 @@ input.ng-valid.ng-touched{
     cursor: pointer;
 		margin-bottom: 20px;
 }
+/*not found wali page ka styling*/
 .resto-alter{
 	height:90vh;
 	background-color: white;
@@ -758,14 +761,13 @@ padding-bottom:30px;
 }
 .compliments p{
 	font-family: 'Bellefair', serif;
+	/*used only for the compliments section text*/
 	font-size:2rem;
 }
-.resto-list li{
-}
-.appD{
+.appD{ /*app Division*/
 	background-color: white;
 	padding:20px;
-	display: flex;
+	display: flex; /*column wise show krne k liye*/
 	flex-direction: column;
 	justify-content: center;
 	align-content: center;
@@ -802,6 +804,7 @@ padding-bottom:30px;
 }
 
 /*for mobiles*/
+/*for better interface.. just changing the padding and margin properties*/
 @media (max-width:768px) {
 	.restaurantContents{
 		padding:0px;
