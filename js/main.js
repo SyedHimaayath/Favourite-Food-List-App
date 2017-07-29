@@ -23,10 +23,10 @@ hungrybee.config(function ($routeProvider) {
 	// jis restaurant pe click karenge us k info page p land krenge depending on the id
 	.when('/restaurant/:id',{
 		templateUrl:'pages/restaurant.html',
-		controller:'restPageController'
+		controller:'restaurantController'
 	})
 })
-hungrybee.controller('restPageController',function($scope,$routeParams,$http){
+hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
 	$scope.ingredients = [];
 	$scope.getIngredients = function(url) {
 	var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}' //passing 3 strings very intelligetnly :)
