@@ -504,7 +504,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 	// console.log($scope.list3)
 // Fourth reequest
 	$scope.list4 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'+ '"}}}]}'
 	$http({
 		'method' : 'POST',
 		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
@@ -529,7 +529,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 
 // Fifth request
 	$scope.list5 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'+ '"}}}]}'
 	$http({
 		'method' : 'POST',
 		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
@@ -648,18 +648,47 @@ $('#subButton').on('click',function(){
 		}
 	}
 	// console.log(count3 +' matched in $scope.list3')
-	if(count1>count2 && count1>count3){
-		console.log('image1')
+	for(var i=0;i<selectList1.length;i++)
+	{
+		for(var j=0;j<$scope.list4.length;j++)
+		{
+			// console.log('searching for '+selectList1[i])
+			if(selectList1[i] == $scope.list4[j]){
+				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
+				count4++;
+			}
+		}
 	}
-	else if(count2>count1 && count2>count3){
-		console.log('image2')
+	for(var i=0;i<selectList1.length;i++)
+	{
+		for(var j=0;j<$scope.list5.length;j++)
+		{
+			// console.log('searching for '+selectList1[i])
+			if(selectList1[i] == $scope.list5[j]){
+				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
+				count5++;
+			}
+		}
 	}
-	else if(count3>count1 && count3>count2){
-		console.log('image3')
-	}
-	else{
-		console.log('seems to be an issue')
-	}
+	var max = Math.max(count1,count2,count3,count4,count5)
+	console.log(count1,count2,count3,count4,count5)
+	console.log(max)
+	// if(count1>count2 && count1>count3){
+	//
+	// 	console.log('image1')
+	// }
+	// else if(count2>count1 && count2>count3){
+	//
+	// 	console.log('image2')
+	// }
+	// else if(count3>count1 && count3>count2){
+	// 	console.log('image3')
+	// }
+	// else{
+	// 	console.log('seems to be an issue')
+	// }
+	// var images =[{img:'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'},
+	// {},{},{},{}]
 });
 
 });
