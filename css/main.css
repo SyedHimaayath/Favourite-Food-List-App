@@ -679,9 +679,10 @@ input.ng-valid.ng-touched{
 	padding:0px;
 }
 .bestdish .list{
-	height:200px;
-	margin-top:20px;
+	min-height:210px;
+	margin-top:5px;
 	border:0.5px solid #e7e7e7;
+	/*overflow: hidden;*/
 	/*background-color: rgba(0,0,0,0.1);*/
 }
 .list .button {
@@ -692,13 +693,16 @@ input.ng-valid.ng-touched{
     border-radius: 4px;
     cursor: pointer;
 }
+.list li{
+	margin:5px 2px;
+	padding:5px 5px;
+	border:1px solid #e7e7e7;
+}
 .dish-name{
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
-	text-shadow:
 	padding: 0px;
-	padding-top:10px;
 	margin:0px auto;
 }
 .dish-image{
@@ -803,6 +807,64 @@ padding-bottom:30px;
 	height:300px;
 }
 
+/*favourite food / Ingredients list*/
+#foodList{
+	background-color: white;
+	min-height:100vh;
+}
+#foodList .navbar-brand {
+    padding: 15px;
+    color: white;
+}
+#mainFrame{
+	margin-top:10px;
+}
+#mainFrame h1{
+	margin-bottom:20px;
+	color: #cb202d;
+	font-family: 'Kaushan Script', cursive;
+}
+#listHold{
+
+}
+#listHold .well{
+	padding:5px;
+	margin:5px;
+}
+#listHold .well input{
+	margin-left:10px;
+	margin-top:10px;
+}
+#listHold .well label{
+	margin-left:20px;
+	width:70%;
+	display: inline-block;
+}
+#disp{
+	margin-left:30px;
+	min-height:450px;
+	background-color: pink;
+}
+#subButton{
+	margin-top:10px;
+	text-align: center;
+}
+#foodList .footer{
+	margin-top:20px;
+}
+.imgTop{
+	background-color: rgba(0,0,0,0.1);
+	height:250px;
+}
+.imgBottom{
+	background-color: rgba(0,139,139,0.2);
+	height:200px;
+}
+.imgBottom set{
+	border:1px solid white;
+	height:200px;
+}
+
 /*for mobiles*/
 /*for better interface.. just changing the padding and margin properties*/
 @media (max-width:768px) {
@@ -835,5 +897,15 @@ padding-bottom:30px;
 	}
 	.review-name{
 		padding:0px;
+	}
+	#mainFrame{
+		padding:0px;
+	}
+	#listHold{
+		padding:0px;
+	}
+	#disp{
+		margin-top:10px;
+		margin-left:0px;
 	}
 }

@@ -25,6 +25,10 @@ hungrybee.config(function ($routeProvider) {
 		templateUrl:'pages/restaurant.html',
 		controller:'restaurantController'
 	})
+	.when('/favouritesfoodlist',{
+		templateUrl:'pages/favorites.html',
+		controller:'foodListController'
+	})
 })
 hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
 	$scope.ingredients = [];
@@ -46,7 +50,7 @@ hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
   			var list = '';
   			for (var i =0;i<ingredients.length;i++)
 				{
-					console.log(response.data.outputs[0].data.concepts[i].name);
+					// console.log(response.data.outputs[0].data.concepts[i].name);
 					//object(response) k andar k object(data) k andar k object(outputs) k andar k araay-ka-first-index([0]) k andar k object(data) kandar k object(concepts) ke ek ek index  k object(name) ko liya
 					$scope.ingredients.push(ingredients[i].name); //aur usko isme push kiya one-by-one
   			}
@@ -423,4 +427,239 @@ hungrybee.controller('mainController',function($scope){
 		reviews:'481 reviews',
 		image:'https://b.zmtcdn.com/data/pictures/2/18312992/32dbdf5cf30d0c5fe36c7efcec60247f_featured_v2.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A'
 	}]
-})
+});
+
+hungrybee.controller('foodListController',function($scope,$http){
+// first reequest using apl
+	$scope.list1 = [];
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
+	$http({
+		'method' : 'POST',
+		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+		'headers': {
+			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+			'Content-Type': 'application/json'
+		},
+		'data': data
+	}).then(function (response){
+		var ingredients = response.data.outputs[0].data.concepts;
+		var list = '';
+		for (var i =0;i<ingredients.length;i++)
+		{
+			$scope.list1.push(ingredients[i].name);
+			// console.log(ingredients[i].name)
+		}
+
+	},function (xhr){
+		console.log(xhr)
+	})
+// 	console.log('list1')
+// console.log($scope.list1)
+// second request
+	$scope.list2 = [];
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'http://www.blendspice6.com/images/2.jpg'+ '"}}}]}'
+	$http({
+		'method' : 'POST',
+		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+		'headers': {
+			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+			'Content-Type': 'application/json'
+		},
+		'data': data
+	}).then(function (response){
+		var ingredients = response.data.outputs[0].data.concepts;
+		for (var i =0;i<ingredients.length;i++)
+		{
+			$scope.list2.push(ingredients[i].name);
+			// console.log(ingredients[i].name)
+		}
+	},function (xhr){
+		console.log(xhr)
+	})
+	// console.log('list2')
+	// console.log($scope.list2)
+// Third request
+	$scope.list3 = [];
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'+ '"}}}]}'
+	$http({
+		'method' : 'POST',
+		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+		'headers': {
+			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+			'Content-Type': 'application/json'
+		},
+		'data': data
+	}).then(function (response){
+		var ingredients = response.data.outputs[0].data.concepts;
+		var list = '';
+		for (var i =0;i<ingredients.length;i++)
+		{
+			$scope.list3.push(ingredients[i].name);
+			// console.log(ingredients[i].name)
+		}
+	},function (xhr){
+		console.log(xhr)
+	})
+	// console.log('list3')
+	// console.log($scope.list3)
+// Fourth reequest
+	$scope.list4 = [];
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
+	$http({
+		'method' : 'POST',
+		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+		'headers': {
+			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+			'Content-Type': 'application/json'
+		},
+		'data': data
+	}).then(function (response){
+		var ingredients = response.data.outputs[0].data.concepts;
+		var list = '';
+		for (var i =0;i<ingredients.length;i++)
+		{
+			$scope.list4.push(ingredients[i].name);
+			// console.log(ingredients[i].name)
+		}
+	},function (xhr){
+		console.log(xhr)
+	})
+	// console.log('list4')
+	// console.log($scope.list4)
+
+// Fifth request
+	$scope.list5 = [];
+	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
+	$http({
+		'method' : 'POST',
+		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+		'headers': {
+			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+			'Content-Type': 'application/json'
+		},
+		'data': data
+	}).then(function (response){
+		var ingredients = response.data.outputs[0].data.concepts;
+		var list = '';
+		for (var i =0;i<ingredients.length;i++)
+		{
+			$scope.list5.push(ingredients[i].name);
+			// console.log(ingredients[i].name)
+		}
+	},function (xhr){
+		console.log(xhr)
+	})
+	// console.log('list5')
+	// console.log($scope.list5)
+
+// click event
+$('#subButton').on('click',function(){
+
+	var n1 = $('#ig0').prop("checked");
+	var n2 = $('#ig1').prop("checked");
+	var n3 = $('#ig2').prop("checked");
+	var n4 = $('#ig3').prop("checked");
+	var n5 = $('#ig4').prop("checked");
+	var n6 = $('#ig5').prop("checked");
+	var n7 = $('#ig6').prop("checked");
+	var n8 = $('#ig7').prop("checked");
+	var n9 = $('#ig8').prop("checked");
+	var n10 = $('#ig9').prop("checked");
+	var n11 = $('#ig10').prop("checked");
+	var n12 = $('#ig11').prop("checked");
+	var n13 = $('#ig12').prop("checked");
+	var n14 = $('#ig13').prop("checked");
+	var n15 = $('#ig14').prop("checked");
+	var n16 = $('#ig15').prop("checked");
+	var n17 = $('#ig16').prop("checked");
+	var n18 = $('#ig17').prop("checked");
+	var n19 = $('#ig18').prop("checked");
+	var n20 = $('#ig19').prop("checked");
+	var n21 = $('#ig20').prop("checked");
+	var n22 = $('#ig21').prop("checked");
+	var n23 = $('#ig22').prop("checked");
+	var n24 = $('#ig23').prop("checked");
+	var n25 = $('#ig24').prop("checked");
+	var n26 = $('#ig25').prop("checked");
+	var n27 = $('#ig26').prop("checked");
+	var n28 = $('#ig27').prop("checked");
+	var n29 = $('#ig28').prop("checked");
+	var n30 = $('#ig29').prop("checked");
+
+	var dummylist0 =[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30]
+	// var listx=['apple','banana','tomato','carrot','beans']
+	// console.log('listX is '+listx)
+	// var listy=['potato','tomato','onion','carrot','brinjal']
+	// console.log('listY is '+listy)
+
+	var selectList1 =[];
+	var selectList2 =[];
+	for(var i=0 ;i<dummylist0.length;i++)
+	{
+		if(dummylist0[i] === true){
+			var id = '#ig'+i
+			selectList1.push($(id).val())
+		}
+		else{
+			var id = '#ig'+i
+			selectList2.push($(id).val())
+		}
+	}
+	console.log('Selected ingredients '+selectList1)
+	console.log('left out ingredients '+selectList2)
+	var count1=0;
+	var count2=0;
+	var count3=0;
+	var count4=0;
+	var count5=0;
+	for(var i=0;i<selectList1.length;i++)
+	{
+		for(var j=0;j<$scope.list1.length;j++)
+		{
+			// console.log('searching for '+selectList1[i])
+			if(selectList1[i] == $scope.list1[j]){
+				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list1')
+				count1++;
+			}
+		}
+	}
+	// console.log(count1+' matched in $scope.list1')
+	for(var i=0;i<selectList1.length;i++)
+	{
+		for(var j=0;j<$scope.list2.length;j++)
+		{
+			// console.log('searching for '+selectList1[i])
+			if(selectList1[i] == $scope.list2[j]){
+				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list2')
+				count2++;
+			}
+		}
+	}
+	// console.log(count2 +' matched in $scope.list2')
+	for(var i=0;i<selectList1.length;i++)
+	{
+		for(var j=0;j<$scope.list3.length;j++)
+		{
+			// console.log('searching for '+selectList1[i])
+			if(selectList1[i] == $scope.list3[j]){
+				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
+				count3++;
+			}
+		}
+	}
+	// console.log(count3 +' matched in $scope.list3')
+	if(count1>count2 && count1>count3){
+		console.log('image1')
+	}
+	else if(count2>count1 && count2>count3){
+		console.log('image2')
+	}
+	else if(count3>count1 && count3>count2){
+		console.log('image3')
+	}
+	else{
+		console.log('seems to be an issue')
+	}
+});
+
+});
