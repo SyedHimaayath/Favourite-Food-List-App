@@ -30,7 +30,10 @@ hungrybee.config(function ($routeProvider) {
 		controller:'foodListController'
 	})
 })
-hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
+hungrybee.controller('restaurantController',function($scope,$routeParams,$http,$location){
+	$scope.foodListApp = function(){
+		$location.url('favouritesfoodlist')
+	}
 	$scope.ingredients = [];
 	$scope.getIngredients = function(url) {
 	var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}' //passing 3 strings very intelligetnly :)
@@ -58,6 +61,7 @@ hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
         	console.log(xhr);
         })
 	}
+
 	//ek ek resturant ki details ek object m..
 	$scope.restaurantId = $routeParams.id;
 	var restaurants = [{
@@ -114,12 +118,12 @@ hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
 		reviews:'692 reviews',
 		image:'https://b.zmtcdn.com/data/pictures/chains/2/91662/6cafcbe3bb5f4478f6015cd38addd31f_featured_v2.jpg',
 		compliment:{
-			para1:'the best place to dine at',
+			para1:'The best place to dine at',
 			paraHold1:'The HINDU',
 			para2:'Absolutely fantastic place to hangout',
 			paraHold2:'The Chime',
-			para3:'awesome awesome awesome awesome',
-			paraHold3:'The awesome',
+			para3:'Great service, Utterly delicious food',
+			paraHold3:'Awesome Town',
 		},
 		photo1:'https://b.zmtcdn.com/data/pictures/2/91662/d363971085b79b7a14ea66697c3d742d.png?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
 		photo2:'https://b.zmtcdn.com/data/pictures/2/91662/9ac1d96ff9e64f499c61a59e6186eb67.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
@@ -151,12 +155,12 @@ hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
 		reviews:'181 reviews',
 		image:'https://b.zmtcdn.com/data/pictures/3/18385313/ebebc05df55c7752db379cffe3e90a00_featured_v2.jpg',
 		compliment:{
-			para1:'the best place to dine at',
-			paraHold1:'The HINDU',
-			para2:'Absolutely fantastic place to hangout',
-			paraHold2:'The Chime',
-			para3:'awesome awesome awesome awesome',
-			paraHold3:'The awesome',
+			para1:'Excellent NYC style food',
+			paraHold1:'Food Chingz',
+			para2:'Truly beautiful place',
+			paraHold2:'GrubOn',
+			para3:'Best restaurant in the city',
+			paraHold3:'Resto Page',
 		},
 		photo1:'https://b.zmtcdn.com/data/pictures/3/18385313/49c97c354cbb30393dd90db30e3fbc6c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
 		photo2:'https://b.zmtcdn.com/data/pictures/3/18385313/80f6cfc6e3ccbe7a93c532365a643b12.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
@@ -254,11 +258,11 @@ hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
 		reviews:'481 reviews',
 		image:'https://b.zmtcdn.com/data/pictures/2/18312992/32dbdf5cf30d0c5fe36c7efcec60247f_featured_v2.jpg',
 		compliment:{
-			para1:'the best place to dine at',
-			paraHold1:'The HINDU',
-			para2:'Absolutely fantastic place to hangout',
-			paraHold2:'The Chime',
-			para3:'awesome awesome awesome awesome',
+			para1:'Delightful experience guaranteed',
+			paraHold1:'Resto Page',
+			para2:'Infrastructural wonder. Must visit',
+			paraHold2:'DC',
+			para3:'once in a life time experience',
 			paraHold3:'The awesome',
 		},
 		photo1:'https://b.zmtcdn.com/data/pictures/2/18312992/62c4b033ad9967974eea8fb337ac5968.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
@@ -347,9 +351,29 @@ hungrybee.controller('homeController',function($scope,$location){
 });
 
 
-hungrybee.controller('mainController',function($scope){
+hungrybee.controller('mainController',function($scope,$location){
 	//ye delivery page ka controller h
 	//alag hotels for alag details
+
+	$(window).on('scroll',function(){
+		var winScroll =$(this).scrollTop();
+		var btn = document.querySelector('.favBtn');
+		btn.style.top=winScroll*0.85+'px';
+
+		var img1 = document.querySelector('.img1');
+		img1.style.top=winScroll*0.9+'px';
+		// img1.style.right=winScroll*0.9+'px';
+		var img2 = document.querySelector('.img2');
+		img2.style.top=winScroll*0.4+'px';
+		var img3 = document.querySelector('.img3');
+		img3.style.top=winScroll*0.5+'px';
+		var img4 = document.querySelector('.img4');
+		img4.style.top=winScroll*0.6+'px';
+	});
+	$scope.foodListApp = function(){
+		$location.url('favouritesfoodlist')
+
+	}
 	$scope.restaurants=[{
 		name: 'American Grill & Bar',
 		address: 'Flat 48, Ground Floor, Opposite Vengal Rao Park, Road 1, Banjara Hills, Hyderabad',
@@ -433,23 +457,6 @@ hungrybee.controller('mainController',function($scope){
 
 hungrybee.controller('foodListController',function($scope,$http){
 
-	// var imagesList=[{
-	// 	name:'item1',
-	// 	img:'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
-	// },{
-	// 	name:'item2',
-	// 	img:'http://www.blendspice6.com/images/2.jpg'
-	// },{
-	// 	name:'item3',
-	// 	img:'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'
-	// },{
-	// 	name:'item4',
-	// 	img:'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'
-	// },{
-	// 	name:'item5',
-	// 	img:'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'
-	// }]
-	// var bit;
 	// first request using api
 		$scope.list1 = [];
 		var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
@@ -562,19 +569,19 @@ hungrybee.controller('foodListController',function($scope,$http){
 		})
 
 		var imagesList=[{
-			name:'item1',
+			name:'Fajitas',
 			img:'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
 		},{
-			name:'item2',
+			name:'Chicken Tikka',
 			img:'http://www.blendspice6.com/images/2.jpg'
 		},{
-			name:'item3',
+			name:'German Pastries',
 			img:'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'
 		},{
-			name:'item4',
+			name:'Pizza',
 			img:'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'
 		},{
-			name:'item5',
+			name:'Sundae scoops',
 			img:'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'
 		}]
 		var bit;
@@ -641,9 +648,9 @@ hungrybee.controller('foodListController',function($scope,$http){
 				{
 					for(var j=0;j<$scope.list1.length;j++)
 					{
-						// console.log('searching for '+selectList1[i])
+						console.log('searching for '+selectList1[i])
 						if(selectList1[i] == $scope.list1[j]){
-							// console.log(selectList1[i]+' found on '+ j +' index of $scope.list1')
+							console.log(selectList1[i]+' found on '+ j +' index of $scope.list1')
 							count1++;
 						}
 					}
@@ -712,7 +719,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 						bit = s;
 						$scope.bgSet = imagesList[bit]
 						console.log(imagesList[bit])
-						console.log(bit+' not matching max')
+						console.log(bit+' is the used index')
 						return 0;
 					}
 				}

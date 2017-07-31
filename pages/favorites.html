@@ -132,11 +132,14 @@
       <div class="btn btn-danger col-md-12" >Submit</div>
     </div>
   </div>
-  <div id="disp" class="col-md-5" >
+  <div id="disp" class="col-md-5" ng-if="bgSet.name" >
+
     <div class="imgTop col-md-12" style="background-image:url({{bgSet.img}})"></div>
-    <div>This probably is your favourite dish {{bgSet.name}}</div>
+    <!-- <div>This could probably be your favourite dish <span class="dish-name">{{bgSet.name}}</span></div> -->
+    <div class="name-box"><span class="dish-name">{{bgSet.name}}</span> </br>could probably be your favourite dish*</div>
     <!-- <div class="imgBottom col-md-12"></div> -->
   </div>
+  <div ng-hide="bgSet.name">Try selecting relevent elements</div>
   </div>
 </div>
 <div class="footer col-md-12">
