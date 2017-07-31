@@ -431,6 +431,7 @@ hungrybee.controller('mainController',function($scope){
 
 hungrybee.controller('foodListController',function($scope,$http){
 // first reequest using apl
+
 	$scope.list1 = [];
 	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
 	$http({
@@ -444,7 +445,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 	}).then(function (response){
 		var ingredients = response.data.outputs[0].data.concepts;
 		var list = '';
-		for (var i =0;i<ingredients.length;i++)
+		for (var i =0;i<ingredients.length-10;i++)
 		{
 			$scope.list1.push(ingredients[i].name);
 			// console.log(ingredients[i].name)
@@ -468,7 +469,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 		'data': data
 	}).then(function (response){
 		var ingredients = response.data.outputs[0].data.concepts;
-		for (var i =0;i<ingredients.length;i++)
+		for (var i =0;i<ingredients.length-10;i++)
 		{
 			$scope.list2.push(ingredients[i].name);
 			// console.log(ingredients[i].name)
@@ -492,7 +493,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 	}).then(function (response){
 		var ingredients = response.data.outputs[0].data.concepts;
 		var list = '';
-		for (var i =0;i<ingredients.length;i++)
+		for (var i =0;i<ingredients.length-10;i++)
 		{
 			$scope.list3.push(ingredients[i].name);
 			// console.log(ingredients[i].name)
@@ -516,7 +517,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 	}).then(function (response){
 		var ingredients = response.data.outputs[0].data.concepts;
 		var list = '';
-		for (var i =0;i<ingredients.length;i++)
+		for (var i =0;i<ingredients.length-10;i++)
 		{
 			$scope.list4.push(ingredients[i].name);
 			// console.log(ingredients[i].name)
@@ -541,7 +542,7 @@ hungrybee.controller('foodListController',function($scope,$http){
 	}).then(function (response){
 		var ingredients = response.data.outputs[0].data.concepts;
 		var list = '';
-		for (var i =0;i<ingredients.length;i++)
+		for (var i =0;i<ingredients.length-10;i++)
 		{
 			$scope.list5.push(ingredients[i].name);
 			// console.log(ingredients[i].name)
@@ -670,25 +671,74 @@ $('#subButton').on('click',function(){
 			}
 		}
 	}
+	var countList = [];
 	var max = Math.max(count1,count2,count3,count4,count5)
-	console.log(count1,count2,count3,count4,count5)
-	console.log(max)
-	// if(count1>count2 && count1>count3){
-	//
-	// 	console.log('image1')
-	// }
-	// else if(count2>count1 && count2>count3){
-	//
-	// 	console.log('image2')
-	// }
-	// else if(count3>count1 && count3>count2){
-	// 	console.log('image3')
-	// }
-	// else{
-	// 	console.log('seems to be an issue')
-	// }
-	// var images =[{img:'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'},
-	// {},{},{},{}]
+	countList.push(count1,count2,count3,count4,count5)
+	console.log(countList)
+	console.log('max is '+max)
+
+	$scope.imagesList={
+		img : 'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
+	}
+
+	function equalCheck(){
+		for(var i=0;i<countList.length;i++)
+		{
+			for(var j=1;j<countList.length;j++)
+			{
+				if(countList[i]==max && countList[j]==max && i!=j){
+					console.log(i+' & '+j+' match')
+					var listName1;
+					var listName2;
+					var countAgain1 =0;
+					var countAgain2 = 0;
+					if(i=0){ listName1 = $scope.list5}
+					else if(i=1){listName1 = $scope.list1}
+					else if(i=2){listName1 = $scope.list2}
+					else if(i=3){listName1 = $scope.list3}
+					else if(i=4){listName1 = $scope.list4}
+					if(j=1){listName2 = $scope.list2}
+					else if(j=2){listName2 = $scope.list3}
+					else if(j=3){listName2 = $scope.list4}
+					else if(j=4){listName2 = $scope.list5}
+
+					for(var x=0;x<selectList2.length;x++)
+					{
+						for(var y=0;y<listName1.length;y++)
+						{
+							if(selectList2[x]===listName1[y])
+							{
+								countAgain1++;
+							}
+						}
+						for(var y=0;y<listName2.length;y++)
+						{
+							if(selectList2[x]===listName2[y])
+							{
+								countAgain2++;
+							}
+						}
+						if(countAgain1>countAgain2){
+							max=countAgain2;
+						}
+						else if(countAgain2>countAgain1){
+							max=countAgain1;
+						}
+					}
+					console.log(countAgain1);
+					console.log(countAgain2);
+					return 0;
+				}
+				else{
+					j++
+					// return 0
+				}
+			}
+
+		}
+		return 0;
+	}
+	equalCheck();
 });
 
 });
