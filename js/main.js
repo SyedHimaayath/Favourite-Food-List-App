@@ -275,6 +275,7 @@ hungrybee.controller('restaurantController',function($scope,$routeParams,$http){
 	$scope.restaurant = restaurants[$routeParams.id - 1];
 	// restaurant k id k according uska object use krna
 });
+
 hungrybee.controller('loginController',function($scope,$location){
 $scope.takeOff = function(){
 	// kind of validation
@@ -304,6 +305,7 @@ $scope.forgot = function(){
 }
 }
 });
+
 hungrybee.controller('signupController',function($scope,$location){
 $scope.backHome= function(){
 	$location.url('/')
@@ -430,320 +432,362 @@ hungrybee.controller('mainController',function($scope){
 });
 
 hungrybee.controller('foodListController',function($scope,$http){
-// first reequest using apl
 
-	$scope.list1 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
-	$http({
-		'method' : 'POST',
-		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-		'headers': {
-			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
-			'Content-Type': 'application/json'
-		},
-		'data': data
-	}).then(function (response){
-		var ingredients = response.data.outputs[0].data.concepts;
-		var list = '';
-		for (var i =0;i<ingredients.length-10;i++)
-		{
-			$scope.list1.push(ingredients[i].name);
-			// console.log(ingredients[i].name)
-		}
-
-	},function (xhr){
-		console.log(xhr)
-	})
-// 	console.log('list1')
-// console.log($scope.list1)
-// second request
-	$scope.list2 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'http://www.blendspice6.com/images/2.jpg'+ '"}}}]}'
-	$http({
-		'method' : 'POST',
-		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-		'headers': {
-			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
-			'Content-Type': 'application/json'
-		},
-		'data': data
-	}).then(function (response){
-		var ingredients = response.data.outputs[0].data.concepts;
-		for (var i =0;i<ingredients.length-10;i++)
-		{
-			$scope.list2.push(ingredients[i].name);
-			// console.log(ingredients[i].name)
-		}
-	},function (xhr){
-		console.log(xhr)
-	})
-	// console.log('list2')
-	// console.log($scope.list2)
-// Third request
-	$scope.list3 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'+ '"}}}]}'
-	$http({
-		'method' : 'POST',
-		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-		'headers': {
-			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
-			'Content-Type': 'application/json'
-		},
-		'data': data
-	}).then(function (response){
-		var ingredients = response.data.outputs[0].data.concepts;
-		var list = '';
-		for (var i =0;i<ingredients.length-10;i++)
-		{
-			$scope.list3.push(ingredients[i].name);
-			// console.log(ingredients[i].name)
-		}
-	},function (xhr){
-		console.log(xhr)
-	})
-	// console.log('list3')
-	// console.log($scope.list3)
-// Fourth reequest
-	$scope.list4 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'+ '"}}}]}'
-	$http({
-		'method' : 'POST',
-		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-		'headers': {
-			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
-			'Content-Type': 'application/json'
-		},
-		'data': data
-	}).then(function (response){
-		var ingredients = response.data.outputs[0].data.concepts;
-		var list = '';
-		for (var i =0;i<ingredients.length-10;i++)
-		{
-			$scope.list4.push(ingredients[i].name);
-			// console.log(ingredients[i].name)
-		}
-	},function (xhr){
-		console.log(xhr)
-	})
-	// console.log('list4')
-	// console.log($scope.list4)
-
-// Fifth request
-	$scope.list5 = [];
-	var data = '{"inputs":[{"data":{"image":{"url":"' +'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'+ '"}}}]}'
-	$http({
-		'method' : 'POST',
-		'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
-		'headers': {
-			'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
-			'Content-Type': 'application/json'
-		},
-		'data': data
-	}).then(function (response){
-		var ingredients = response.data.outputs[0].data.concepts;
-		var list = '';
-		for (var i =0;i<ingredients.length-10;i++)
-		{
-			$scope.list5.push(ingredients[i].name);
-			// console.log(ingredients[i].name)
-		}
-	},function (xhr){
-		console.log(xhr)
-	})
-	// console.log('list5')
-	// console.log($scope.list5)
-
-// click event
-$('#subButton').on('click',function(){
-if($('input:checked').length>=5)
-{
-	var n1 = $('#ig0').prop("checked");
-	var n2 = $('#ig1').prop("checked");
-	var n3 = $('#ig2').prop("checked");
-	var n4 = $('#ig3').prop("checked");
-	var n5 = $('#ig4').prop("checked");
-	var n6 = $('#ig5').prop("checked");
-	var n7 = $('#ig6').prop("checked");
-	var n8 = $('#ig7').prop("checked");
-	var n9 = $('#ig8').prop("checked");
-	var n10 = $('#ig9').prop("checked");
-	var n11 = $('#ig10').prop("checked");
-	var n12 = $('#ig11').prop("checked");
-	var n13 = $('#ig12').prop("checked");
-	var n14 = $('#ig13').prop("checked");
-	var n15 = $('#ig14').prop("checked");
-	var n16 = $('#ig15').prop("checked");
-	var n17 = $('#ig16').prop("checked");
-	var n18 = $('#ig17').prop("checked");
-	var n19 = $('#ig18').prop("checked");
-	var n20 = $('#ig19').prop("checked");
-	var n21 = $('#ig20').prop("checked");
-	var n22 = $('#ig21').prop("checked");
-	var n23 = $('#ig22').prop("checked");
-	var n24 = $('#ig23').prop("checked");
-	var n25 = $('#ig24').prop("checked");
-	var n26 = $('#ig25').prop("checked");
-	var n27 = $('#ig26').prop("checked");
-	var n28 = $('#ig27').prop("checked");
-	var n29 = $('#ig28').prop("checked");
-	var n30 = $('#ig29').prop("checked");
-
-	var dummylist0 =[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30]
-	// var listx=['apple','banana','tomato','carrot','beans']
-	// console.log('listX is '+listx)
-	// var listy=['potato','tomato','onion','carrot','brinjal']
-	// console.log('listY is '+listy)
-
-	var selectList1 =[];
-	var selectList2 =[];
-	for(var i=0 ;i<dummylist0.length;i++)
-	{
-		if(dummylist0[i] === true){
-			var id = '#ig'+i
-			selectList1.push($(id).val())
-		}
-		else{
-			var id = '#ig'+i
-			selectList2.push($(id).val())
-		}
-	}
-	console.log('Selected ingredients '+selectList1)
-	console.log('left out ingredients '+selectList2)
-	var count1=0;
-	var count2=0;
-	var count3=0;
-	var count4=0;
-	var count5=0;
-	for(var i=0;i<selectList1.length;i++)
-	{
-		for(var j=0;j<$scope.list1.length;j++)
-		{
-			// console.log('searching for '+selectList1[i])
-			if(selectList1[i] == $scope.list1[j]){
-				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list1')
-				count1++;
-			}
-		}
-	}
-	// console.log(count1+' matched in $scope.list1')
-	for(var i=0;i<selectList1.length;i++)
-	{
-		for(var j=0;j<$scope.list2.length;j++)
-		{
-			// console.log('searching for '+selectList1[i])
-			if(selectList1[i] == $scope.list2[j]){
-				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list2')
-				count2++;
-			}
-		}
-	}
-	// console.log(count2 +' matched in $scope.list2')
-	for(var i=0;i<selectList1.length;i++)
-	{
-		for(var j=0;j<$scope.list3.length;j++)
-		{
-			// console.log('searching for '+selectList1[i])
-			if(selectList1[i] == $scope.list3[j]){
-				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
-				count3++;
-			}
-		}
-	}
-	// console.log(count3 +' matched in $scope.list3')
-	for(var i=0;i<selectList1.length;i++)
-	{
-		for(var j=0;j<$scope.list4.length;j++)
-		{
-			// console.log('searching for '+selectList1[i])
-			if(selectList1[i] == $scope.list4[j]){
-				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
-				count4++;
-			}
-		}
-	}
-	for(var i=0;i<selectList1.length;i++)
-	{
-		for(var j=0;j<$scope.list5.length;j++)
-		{
-			// console.log('searching for '+selectList1[i])
-			if(selectList1[i] == $scope.list5[j]){
-				// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
-				count5++;
-			}
-		}
-	}
-	var countList = [];
-	var max = Math.max(count1,count2,count3,count4,count5)
-	countList.push(count1,count2,count3,count4,count5)
-	console.log(countList)
-	console.log('max is '+max)
-
-	$scope.imagesList={
-		img : 'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
-	}
-
-	function equalCheck(){
-		for(var i=0;i<countList.length;i++)
-		{
-			for(var j=1;j<countList.length;j++)
+	// var imagesList=[{
+	// 	name:'item1',
+	// 	img:'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
+	// },{
+	// 	name:'item2',
+	// 	img:'http://www.blendspice6.com/images/2.jpg'
+	// },{
+	// 	name:'item3',
+	// 	img:'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'
+	// },{
+	// 	name:'item4',
+	// 	img:'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'
+	// },{
+	// 	name:'item5',
+	// 	img:'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'
+	// }]
+	// var bit;
+	// first request using api
+		$scope.list1 = [];
+		var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'+ '"}}}]}'
+		$http({
+			'method' : 'POST',
+			'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+			'headers': {
+				'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+				'Content-Type': 'application/json'
+			},
+			'data': data
+		}).then(function (response){
+			var ingredients = response.data.outputs[0].data.concepts;
+			var list = '';
+			for (var i =0;i<ingredients.length-10;i++)
 			{
-				if(countList[i]==max && countList[j]==max && i!=j){
-					console.log(i+' & '+j+' match')
-					var listName1;
-					var listName2;
-					var countAgain1 =0;
-					var countAgain2 = 0;
-					if(i=0){ listName1 = $scope.list5}
-					else if(i=1){listName1 = $scope.list1}
-					else if(i=2){listName1 = $scope.list2}
-					else if(i=3){listName1 = $scope.list3}
-					else if(i=4){listName1 = $scope.list4}
-					if(j=1){listName2 = $scope.list2}
-					else if(j=2){listName2 = $scope.list3}
-					else if(j=3){listName2 = $scope.list4}
-					else if(j=4){listName2 = $scope.list5}
+				$scope.list1.push(ingredients[i].name);
+				// console.log(ingredients[i].name)
+			}
 
-					for(var x=0;x<selectList2.length;x++)
+		},function (xhr){
+			console.log(xhr)
+		})
+	// second request
+		$scope.list2 = [];
+		var data = '{"inputs":[{"data":{"image":{"url":"' +'http://www.blendspice6.com/images/2.jpg'+ '"}}}]}'
+		$http({
+			'method' : 'POST',
+			'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+			'headers': {
+				'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+				'Content-Type': 'application/json'
+			},
+			'data': data
+		}).then(function (response){
+			var ingredients = response.data.outputs[0].data.concepts;
+			for (var i =0;i<ingredients.length-10;i++)
+			{
+				$scope.list2.push(ingredients[i].name);
+				// console.log(ingredients[i].name)
+			}
+		},function (xhr){
+			console.log(xhr)
+		})
+	// Third request
+		$scope.list3 = [];
+		var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'+ '"}}}]}'
+		$http({
+			'method' : 'POST',
+			'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+			'headers': {
+				'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+				'Content-Type': 'application/json'
+			},
+			'data': data
+		}).then(function (response){
+			var ingredients = response.data.outputs[0].data.concepts;
+			var list = '';
+			for (var i =0;i<ingredients.length-10;i++)
+			{
+				$scope.list3.push(ingredients[i].name);
+				// console.log(ingredients[i].name)
+			}
+		},function (xhr){
+			console.log(xhr)
+		})
+	// Fourth request
+		$scope.list4 = [];
+		var data = '{"inputs":[{"data":{"image":{"url":"' +'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'+ '"}}}]}'
+		$http({
+			'method' : 'POST',
+			'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+			'headers': {
+				'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+				'Content-Type': 'application/json'
+			},
+			'data': data
+		}).then(function (response){
+			var ingredients = response.data.outputs[0].data.concepts;
+			var list = '';
+			for (var i =0;i<ingredients.length-10;i++)
+			{
+				$scope.list4.push(ingredients[i].name);
+				// console.log(ingredients[i].name)
+			}
+		},function (xhr){
+			console.log(xhr)
+		})
+	// Fifth request
+		$scope.list5 = [];
+		var data = '{"inputs":[{"data":{"image":{"url":"' +'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'+ '"}}}]}'
+		$http({
+			'method' : 'POST',
+			'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+			'headers': {
+				'Authorization': 'Key b8c3e76005914949bf0a12c25e052abe',
+				'Content-Type': 'application/json'
+			},
+			'data': data
+		}).then(function (response){
+			var ingredients = response.data.outputs[0].data.concepts;
+			var list = '';
+			for (var i =0;i<ingredients.length-10;i++)
+			{
+				$scope.list5.push(ingredients[i].name);
+				// console.log(ingredients[i].name)
+			}
+		},function (xhr){
+			console.log(xhr)
+		})
+
+		var imagesList=[{
+			name:'item1',
+			img:'https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg'
+		},{
+			name:'item2',
+			img:'http://www.blendspice6.com/images/2.jpg'
+		},{
+			name:'item3',
+			img:'https://img.grouponcdn.com/deal/uvzXjairBk34ASNJGeTn/DT-700x420/v1/c700x420.jpg'
+		},{
+			name:'item4',
+			img:'https://img.grouponcdn.com/deal/8DDtq5XRzVnLXEUnPHPd/p2-2048x1229/v1/c700x420.jpg'
+		},{
+			name:'item5',
+			img:'http://desotopharmacy.com/wp-content/uploads/2014/05/ice-cream.png'
+		}]
+		var bit;
+
+	// click event
+	$scope.newFunc = function(){
+
+			if($('input:checked').length>=5)
+			{
+				var n1 = $('#ig0').prop("checked");
+				var n2 = $('#ig1').prop("checked");
+				var n3 = $('#ig2').prop("checked");
+				var n4 = $('#ig3').prop("checked");
+				var n5 = $('#ig4').prop("checked");
+				var n6 = $('#ig5').prop("checked");
+				var n7 = $('#ig6').prop("checked");
+				var n8 = $('#ig7').prop("checked");
+				var n9 = $('#ig8').prop("checked");
+				var n10 = $('#ig9').prop("checked");
+				var n11 = $('#ig10').prop("checked");
+				var n12 = $('#ig11').prop("checked");
+				var n13 = $('#ig12').prop("checked");
+				var n14 = $('#ig13').prop("checked");
+				var n15 = $('#ig14').prop("checked");
+				var n16 = $('#ig15').prop("checked");
+				var n17 = $('#ig16').prop("checked");
+				var n18 = $('#ig17').prop("checked");
+				var n19 = $('#ig18').prop("checked");
+				var n20 = $('#ig19').prop("checked");
+				var n21 = $('#ig20').prop("checked");
+				var n22 = $('#ig21').prop("checked");
+				var n23 = $('#ig22').prop("checked");
+				var n24 = $('#ig23').prop("checked");
+				var n25 = $('#ig24').prop("checked");
+				var n26 = $('#ig25').prop("checked");
+				var n27 = $('#ig26').prop("checked");
+				var n28 = $('#ig27').prop("checked");
+				var n29 = $('#ig28').prop("checked");
+				var n30 = $('#ig29').prop("checked");
+
+				var dummylist0 =[n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30]
+
+				var selectList1 =[];
+				var selectList2 =[];
+				for(var i=0 ;i<dummylist0.length;i++)
+				{
+					if(dummylist0[i] === true){
+						var id = '#ig'+i
+						selectList1.push($(id).val())
+					}
+					else{
+						var id = '#ig'+i
+						selectList2.push($(id).val())
+					}
+				}
+				console.log('Selected ingredients '+selectList1)
+				console.log('left out ingredients '+selectList2)
+				var count1=0;
+				var count2=0;
+				var count3=0;
+				var count4=0;
+				var count5=0;
+				for(var i=0;i<selectList1.length;i++)
+				{
+					for(var j=0;j<$scope.list1.length;j++)
 					{
-						for(var y=0;y<listName1.length;y++)
-						{
-							if(selectList2[x]===listName1[y])
-							{
-								countAgain1++;
-							}
-						}
-						for(var y=0;y<listName2.length;y++)
-						{
-							if(selectList2[x]===listName2[y])
-							{
-								countAgain2++;
-							}
-						}
-						if(countAgain1>countAgain2){
-							max=countAgain2;
-						}
-						else if(countAgain2>countAgain1){
-							max=countAgain1;
+						// console.log('searching for '+selectList1[i])
+						if(selectList1[i] == $scope.list1[j]){
+							// console.log(selectList1[i]+' found on '+ j +' index of $scope.list1')
+							count1++;
 						}
 					}
-					console.log(countAgain1);
-					console.log(countAgain2);
-					return 0;
+				// }
+				// // console.log(count1+' matched in $scope.list1')
+				// for(var i=0;i<selectList1.length;i++)
+				// {
+					for(var j=0;j<$scope.list2.length;j++)
+					{
+						// console.log('searching for '+selectList1[i])
+						if(selectList1[i] == $scope.list2[j]){
+							// console.log(selectList1[i]+' found on '+ j +' index of $scope.list2')
+							count2++;
+						}
+					}
+				// }
+				// // console.log(count2 +' matched in $scope.list2')
+				// for(var i=0;i<selectList1.length;i++)
+				// {
+					for(var j=0;j<$scope.list3.length;j++)
+					{
+						// console.log('searching for '+selectList1[i])
+						if(selectList1[i] == $scope.list3[j]){
+							// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
+							count3++;
+						}
+					}
+				// }
+				// // console.log(count3 +' matched in $scope.list3')
+				// for(var i=0;i<selectList1.length;i++)
+				// {
+					for(var j=0;j<$scope.list4.length;j++)
+					{
+						// console.log('searching for '+selectList1[i])
+						if(selectList1[i] == $scope.list4[j]){
+							// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
+							count4++;
+						}
+					}
+				// }
+				// for(var i=0;i<selectList1.length;i++)
+				// {
+					for(var j=0;j<$scope.list5.length;j++)
+					{
+						// console.log('searching for '+selectList1[i])
+						if(selectList1[i] == $scope.list5[j]){
+							// console.log(selectList1[i]+' found on '+ j +' index of $scope.list3')
+							count5++;
+						}
+					}
 				}
-				else{
-					j++
-					// return 0
+				var countList = [];
+				var max = Math.max(count1,count2,count3,count4,count5)
+				countList.push(count1,count2,count3,count4,count5)
+				console.log(countList)
+				console.log('max is '+max)
+
+				// $scope.bgSet = imagesList[max]
+			// console.log($scope.bgSet);
+
+			if(countList[0]!=countList[1]!=countList[2]!=countList[3]!=countList[4]){
+				for(var s=0;s<countList.length;s++)
+				{
+					if(countList[s]==max)
+					{
+						bit = s;
+						$scope.bgSet = imagesList[bit]
+						console.log(imagesList[bit])
+						console.log(bit+' not matching max')
+						return 0;
+					}
 				}
 			}
+			else {
+				equalCheck();
+			}
+				function equalCheck(){
+					for(var i=0;i<countList.length;i++)
+					{
+						for(var j=1;j<countList.length;j++)
+						{
+							if(countList[i]==max && countList[j]==max && i!=j){
+								console.log(i+' & '+j+' match')
+								var listName1;
+								var listName2;
+								var countAgain1 =0;
+								var countAgain2 = 0;
+								if(i=0){ listName1 = $scope.list5}
+								else if(i=1){listName1 = $scope.list1}
+								else if(i=2){listName1 = $scope.list2}
+								else if(i=3){listName1 = $scope.list3}
+								else if(i=4){listName1 = $scope.list4}
+								if(j=1){listName2 = $scope.list2}
+								else if(j=2){listName2 = $scope.list3}
+								else if(j=3){listName2 = $scope.list4}
+								else if(j=4){listName2 = $scope.list5}
 
-		}
-		return 0;
-	}
-	equalCheck();
-}
-else{
-	alert('please nter more than 5')
-}});
-//
+								for(var x=0;x<selectList2.length;x++)
+								{
+									for(var y=0;y<listName1.length;y++)
+									{
+										if(selectList2[x]===listName1[y])
+										{
+											countAgain1++;
+										}
+									}
+									for(var y=0;y<listName2.length;y++)
+									{
+										if(selectList2[x]===listName2[y])
+										{
+											countAgain2++;
+										}
+									}
+									if(countAgain1>countAgain2){
+										bit=j
+									}
+									else if(countAgain2>countAgain1){
+										bit=i
+									}
+								}
+								// $scope.bgSet = imagesList[max]
+								console.log(bit+' from inside equal check func')
+								console.log(countAgain1);
+								console.log(countAgain2);
+								// $scope.bgSet= imagesList[bit]
+								// console.log(imagesList[bit])
+								// console.log($scope.bgSet)
+								// return 0;
+							}
+						}
+					}
 
+					// return 0;
+				}
+			// bit = max;
+			$scope.bgSet = imagesList[bit]
+			console.log($scope.bgSet);
+
+			}
+			else{
+				alert('please select more than 5')
+			}
+	};
+
+
+	//
 });
