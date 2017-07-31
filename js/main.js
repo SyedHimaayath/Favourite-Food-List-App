@@ -555,7 +555,8 @@ hungrybee.controller('foodListController',function($scope,$http){
 
 // click event
 $('#subButton').on('click',function(){
-
+if($('input:checked').length>=5)
+{
 	var n1 = $('#ig0').prop("checked");
 	var n2 = $('#ig1').prop("checked");
 	var n3 = $('#ig2').prop("checked");
@@ -739,6 +740,10 @@ $('#subButton').on('click',function(){
 		return 0;
 	}
 	equalCheck();
-});
+}
+else{
+	alert('please nter more than 5')
+}});
+//
 
 });
